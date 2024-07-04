@@ -1,4 +1,4 @@
-# my-journal-dapp
+# Solana dApp
 
 This project is generated with the [create-solana-dapp](https://github.com/solana-developers/create-solana-dapp) generator.
 
@@ -27,12 +27,6 @@ cd <repo-name>
 npm install
 ```
 
-#### Start the web app
-
-```
-npm run dev
-```
-
 ## Apps
 
 ### anchor
@@ -41,41 +35,44 @@ This is a Solana program written in Rust using the Anchor framework.
 
 #### Commands
 
-You can use any normal anchor commands. Either move to the `anchor` directory and run the `anchor` command or prefix the command with `npm run`, eg: `npm run anchor`.
-
-#### Sync the program id:
-
-Running this command will create a new keypair in the `anchor/target/deploy` directory and save the address to the Anchor config file and update the `declare_id!` macro in the `./src/lib.rs` file of the program.
-
-You will manually need to update the constant in `anchor/lib/counter-exports.ts` to match the new program id.
-
-```shell
-npm run anchor keys sync
+```
+cd anchor
 ```
 
-#### Build the program:
-
-```shell
-npm run anchor-build
+```
+anchor keys list
 ```
 
-#### Start the test validator with the program deployed:
+After this command take the key and change the `declare_id!` value on `lib.rs` file 
 
-```shell
-npm run anchor-localnet
+Then use these commands
+ 
+```
+anchor clean
 ```
 
-#### Run the tests
+```
+anchor keys sync
+```
+
+```
+anchor build
+```
+
+After these commands need to deploy the contract
+
+#### Deploy to Localnet
 
 ```shell
-npm run anchor-test
+anchor deploy --provider.cluster localnet
 ```
 
 #### Deploy to Devnet
 
 ```shell
-npm run anchor deploy --provider.cluster devnet
+anchor deploy --provider.cluster devnet
 ```
+
 
 ### web
 
@@ -87,10 +84,4 @@ Start the web app
 
 ```shell
 npm run dev
-```
-
-Build the web app
-
-```shell
-npm run build
 ```
